@@ -17,7 +17,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipesService } from './recipes/recipes.service';
-
+import { HttpClientModule } from '@angular/common/http';
+import { DataStorageService } from './shared/datastorage.service';
+import { SinginComponent } from './auth/singin/singin.component';
+import { SingupComponent } from './auth/singup/singup.component';
 
 
 @NgModule({
@@ -32,14 +35,17 @@ import { RecipesService } from './recipes/recipes.service';
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent ],
+    RecipeEditComponent,
+    SinginComponent,
+    SingupComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ ShoppingListService, RecipesService ],
+  providers: [ ShoppingListService, RecipesService, DataStorageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
