@@ -15,6 +15,7 @@ export class RecipesService {
     constructor(private shoppingListService: ShoppingListService) {}
 
     setRecipes(recipes: Recipe[]) {
+      this.recipes.length = 0;
       Array.prototype.push.apply(this.recipes, recipes);
       this.recipesChanged.next(this.getRecipes());
     }
