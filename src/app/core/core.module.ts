@@ -10,6 +10,9 @@ import { RecipesService } from '../recipes/recipes.service';
 import { DataStorageService } from '../shared/datastorage.service';
 import { AuthService } from '../auth/auth.service';
 import { AuthGuard } from '../auth/auth-guard.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../shared/auth.interceptor';
+import { LoggingInterceptor } from '../shared/loggingInterceptor';
 
 
 @NgModule({
@@ -26,7 +29,15 @@ import { AuthGuard } from '../auth/auth-guard.service';
     AppRoutingModule,
     HeaderComponent
   ],
-  providers: [ShoppingListService, RecipesService, DataStorageService, AuthService, AuthGuard]
+  providers: [
+    ShoppingListService,
+    RecipesService,
+    DataStorageService,
+    AuthService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }
+  ]
 })
 export class CoreModule {
 
