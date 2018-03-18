@@ -5,14 +5,11 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs/Subject';
 import { DataStorageService } from '../shared/datastorage.service';
 
-@Injectable()
 export class RecipesService {
 
   recipesChanged = new Subject<Recipe[]>();
 
     private recipes: Recipe[] = [];
-
-    constructor(private shoppingListService: ShoppingListService) {}
 
     setRecipes(recipes: Recipe[]) {
       this.recipes.length = 0;
@@ -26,10 +23,6 @@ export class RecipesService {
 
     getRecipe(id: number) {
         return this.recipes[id];
-    }
-
-    addIngredientsToShoppingList(ingredients: Ingredient[]) {
-        this.shoppingListService.addIngredients(ingredients);
     }
 
     addRecipe(recipe: Recipe) {

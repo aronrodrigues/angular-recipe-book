@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { SingupComponent } from './auth/singup/singup.component';
 import { SinginComponent } from './auth/singin/singin.component';
 import { AuthGuard } from './auth/auth-guard.service';
@@ -23,9 +19,9 @@ const appRoutes: Routes = [{
 }];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(appRoutes, {
-      preloadingStrategy: PreloadAllModules
-    }) ],
+    imports: [
+      RouterModule.forRoot(appRoutes)
+    ],
     exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
