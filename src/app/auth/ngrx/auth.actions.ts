@@ -11,12 +11,12 @@ export class SignupAction implements Action {
 export class SigninAction implements Action {
   readonly type = SIGNIN;
 }
-export class LogouttAction implements Action {
+export class LogoutAction implements Action {
   readonly type = LOGOUT;
 }
 export class SetTokenAction implements Action {
   readonly type = SET_TOKEN;
-  constructor(public payload: String) {}
+  constructor(public payload: string) {}
 }
 
-export type Actions = SigninAction | SignupAction | LogouttAction | SetTokenAction;
+export type Actions = SigninAction | SignupAction | LogoutAction | SetTokenAction;

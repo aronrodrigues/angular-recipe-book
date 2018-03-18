@@ -12,15 +12,12 @@ export class DataStorageService {
       private authService: AuthService) {}
 
   storeRecipes() {
-    const token: string = this.authService.getToken();
     return this.httpClient.put('https://ng-recipe-book-d3e9b.firebaseio.com/recipes.json',
         this.recipeService.getRecipes());
 
   }
 
   getRecipes() {
-    const token: string = this.authService.getToken();
-
     this.httpClient.get<Recipe[]>('https://ng-recipe-book-d3e9b.firebaseio.com/recipes.json')
     .subscribe((data) => {
       const recipes: Recipe[] = data;
