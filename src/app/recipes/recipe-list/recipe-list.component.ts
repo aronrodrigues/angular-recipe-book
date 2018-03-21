@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Recipe } from '../recipe.model';
-import { RecipesService } from '../recipes.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
@@ -15,8 +14,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipeState: Observable<RecipeState>;
   subscription: Subscription;
 
-  constructor(private recipesService: RecipesService, private router: Router,
-      private route: ActivatedRoute, private store: Store<FeatureState>) { }
+  constructor(private router: Router, private route: ActivatedRoute, private store: Store<FeatureState>) { }
 
   ngOnInit() {
     this.recipeState = this.store.select('recipes');

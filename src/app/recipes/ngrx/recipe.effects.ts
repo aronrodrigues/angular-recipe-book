@@ -17,6 +17,11 @@ export class RecipeEffects {
   .switchMap((action: FetchRecipesAction) => {
     return this.httpClient.get<Recipe[]>('https://ng-recipe-book-d3e9b.firebaseio.com/recipes.json');
   }).map((recipes) => {
+    recipes.forEach((recipe) => {
+      if (!recipe.ingredients) {
+        recipe.ingredients = [];
+      }
+    });
     console.log(recipes);
     return {
       type: SET_RECIPES,

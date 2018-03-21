@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Params, ActivatedRoute, Router } from '@angular/router';
-// import { RecipesService } from '../recipes.service';
 import { Recipe } from '../recipe.model';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Ingredient } from '../../shared/ingredients.model';
@@ -21,7 +20,6 @@ export class RecipeEditComponent implements OnInit {
   recipeIngredients: FormArray;
 
   constructor(
-      // private recipesService: RecipesService,
       private router: Router,
       private route: ActivatedRoute,
       private store: Store<FeatureState>) { }
@@ -30,7 +28,6 @@ export class RecipeEditComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
-      // this.recipe = this.recipesService.getRecipe(this.id);
       this.initForm();
     });
   }
@@ -39,7 +36,6 @@ export class RecipeEditComponent implements OnInit {
     let recipe = null;
     const recipeIngredients: FormArray = new FormArray([]);
     if (this.editMode) {
-      // recipe = this.recipesService.getRecipe(this.id);
       this.store.select('recipes')
       .take(1)
       .subscribe((recipeState: RecipeState) => {
@@ -80,10 +76,8 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.editMode) {
       this.store.dispatch(new UpdateRecipeAction({recipe, index: this.id}));
-      // this.recipesService.updateRecipe(this.id, recipe);
     } else {
       this.store.dispatch(new AddRecipeAction(recipe));
-      // this.recipesService.addRecipe(recipe);
     }
     this.onCancel();
 
