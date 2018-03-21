@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AuthState } from '../../auth/ngrx/auth.reducers';
 import { LogoutAction } from '../../auth/ngrx/auth.actions';
+import { FetchRecipesAction, StoreRecipesAction } from '../../recipes/ngrx/recipe.actions';
 
 @Component({
     selector: 'app-header',
@@ -23,12 +24,13 @@ export class HeaderComponent implements OnInit {
       private store: Store<AppState>) {}
 
   onSaveData() {
-    this.dataStorageService.storeRecipes()
-      .subscribe((data) => { console.log(data); });
+    this.store.dispatch(new StoreRecipesAction());
+    // this.dataStorageService.storeRecipes().subscribe((data) => { console.log(data); });
   }
 
   onFetchData() {
-    this.dataStorageService.getRecipes();
+    this.store.dispatch(new FetchRecipesAction());
+    // this.dataStorageService.getRecipes();
   }
 
   onSignout() {

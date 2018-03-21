@@ -11,6 +11,10 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { RecipesRouting } from './recipes-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { recipeReducer } from './ngrx/recipe.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { RecipeEffects } from './ngrx/recipe.effects';
 
 // 1.2M -> 789K Mar  8 20:22 main.4eda838665c9b91a5fef.bundle.js
 @NgModule({
@@ -26,9 +30,10 @@ import { RecipesRouting } from './recipes-routing.module';
     CommonModule,
     ReactiveFormsModule,
     RecipesRouting,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('recipes', recipeReducer),
+    EffectsModule.forFeature([RecipeEffects])
   ]
-
 })
 export class RecipesModule {
 
